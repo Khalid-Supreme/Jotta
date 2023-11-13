@@ -1,8 +1,6 @@
 
 <template>
-<h1>
-    I love foodie
-</h1>
+<!-- our html code will go here -->
   
 </template>
 
