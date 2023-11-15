@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
+
+/* body */
+body * {
+    font-family: "Poppins";
+}
+
 /* header */
 header {
     text-align: center;
@@ -6,16 +13,27 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  header img {
+}
+
+header img {
     max-width: 60px;
     transform: rotate(-10deg);
-  }
-  header h1 {
+}
+
+header h1 {
     margin: 0;
     font-size: 2em;
     padding-top: 25px;
     margin-left: 15px;
     color: #777;
     transform: rotate(2deg);
+}
+
+/* body */
+
+
+.jotting-title {
+    font-size: 1.5em!important;
+    font-weight: 800!important;
+    
   }
