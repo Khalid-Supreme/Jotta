@@ -1,28 +1,38 @@
 
 <template>
     <v-sheet elevation="12" max-width="1000" rounded="lg" width="100%" class="pa-4 mx-auto">
-        
+
         <!-- heading -->
         <header class="jotta-header">
             <img src="./assets/pinia-logo.svg" alt="pinia-logo">
             <h1>{{ jottaStore.name }}</h1>
         </header>
+        <!-- jottings filter buttons -->
+        <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn variant="tonal" @click="filter = 'all'" append-icon="mdi-format-list-bulleted-square">All</v-btn>
+            <v-btn variant="tonal" @click="filter = 'favorite'" append-icon="mdi-heart">Favorite</v-btn>
+        </v-card-actions>
 
         <!-- jottings -->
         <div class="jottings">
 
             <!-- all jottings -->
-            <p>all</p>
-            <div v-for="jotting in jottaStore.jottings" :key="jotting.id">
-                <Jottings :jotting="jotting" />
+            <div v-if="filter == 'all'">
 
+                <div v-for="jotting in jottaStore.jottings" :key="jotting.id">
+                    <Jottings :jotting="jotting" />
+                    
+                </div>
             </div>
-            
-            <!-- favorite jottings -->
-            <p>favorites</p>
-            <div v-for="jotting in jottaStore.fave" :key="jotting.id">
-                <Jottings :jotting="jotting" />
 
+            <!-- favorite jottings -->
+            <div v-else="filter == 'favorite'">
+
+                <div  v-for="jotting in jottaStore.fave" :key="jotting.id">
+                    <Jottings :jotting="jotting" />
+                    
+                </div>
             </div>
         </div>
     </v-sheet>
@@ -30,6 +40,8 @@
 
 
 <script>
+
+import { ref } from "vue";
 import Jottings from "./components/JottingsOverview.vue";
 import { useJottaStore } from "./stores/JottaStore";
 export default {
@@ -41,7 +53,9 @@ export default {
     setup() {
         const jottaStore = useJottaStore();
 
-        return { jottaStore };
+        const filter = ref('all');
+
+        return { jottaStore, filter };
     }
 }
 
