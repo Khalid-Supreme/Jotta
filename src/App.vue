@@ -19,19 +19,17 @@
 
             <!-- all jottings -->
             <div v-if="filter == 'all'">
-
+                <p>You have {{ jottaStore.allCount + jottaStore.pluralizeAllCount }} </p>
                 <div v-for="jotting in jottaStore.jottings" :key="jotting.id">
                     <Jottings :jotting="jotting" />
-                    
                 </div>
             </div>
 
             <!-- favorite jottings -->
             <div v-else="filter == 'favorite'">
-
-                <div  v-for="jotting in jottaStore.fave" :key="jotting.id">
+                <p v-if="jottaStore.faveCount">You have {{ jottaStore.faveCount + jottaStore.pluralizeFaveCount }} </p>
+                <div v-for="jotting in jottaStore.fave" :key="jotting.id">
                     <Jottings :jotting="jotting" />
-                    
                 </div>
             </div>
         </div>
