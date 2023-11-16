@@ -11,17 +11,14 @@ export const useJottaStore = defineStore('jottastore', {
     }),
 
     getters: {
-        fave(
-        ) {
+        fave() {
             return this.jottings.filter(J => J.isFave)
         },
-
-     
 
         faveCount() {
             return this.jottings.reduce((p, c) => {
                 return c.isFave ? p + 1 : p
-            },0);
+            }, 0);
         },
 
         allCount: (state) => state.jottings.length,
@@ -31,6 +28,23 @@ export const useJottaStore = defineStore('jottastore', {
         },
         pluralizeAllCount() {
             return this.allCount > 1 ? " total jottings." : " total jotting.";
+        },
+
+        generateNewId() {
+            if (this.jottings.length > 0) {
+                return this.jottings.reduce((max, obj) => {
+                    return obj.id > max ? obj.id : max;
+                }, -Infinity)
+            }
+            else {
+                return 1;
+            }
         }
     },
+
+    actions: {
+        addNew(newJot) {
+            this.jottings.push(newJot);
+        }
+    }
 });

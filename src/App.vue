@@ -8,18 +8,23 @@
             <h1>{{ jottaStore.name }}</h1>
         </header>
         <!-- jottings filter buttons -->
+
         <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn variant="tonal" @click="filter = 'all'" append-icon="mdi-format-list-bulleted-square">All</v-btn>
             <v-btn variant="tonal" @click="filter = 'favorite'" append-icon="mdi-heart">Favorite</v-btn>
         </v-card-actions>
 
+        <!-- new jottings form -->
+
+        <Form/>
+
         <!-- jottings -->
         <div class="jottings">
 
             <!-- all jottings -->
             <div v-if="filter == 'all'">
-                <p>You have {{ jottaStore.allCount + jottaStore.pluralizeAllCount }} </p>
+                <p v-if="jottaStore.allCount">You have {{ jottaStore.allCount + jottaStore.pluralizeAllCount }} </p>
                 <div v-for="jotting in jottaStore.jottings" :key="jotting.id">
                     <Jottings :jotting="jotting" />
                 </div>
@@ -38,14 +43,14 @@
 
 
 <script>
-
+import Form from "./components/JottingsForm.vue";
 import { ref } from "vue";
 import Jottings from "./components/JottingsOverview.vue";
-import { useJottaStore } from "./stores/JottaStore";
+import { useJottaStore } from "./stores/jottaStore";
 export default {
 
     components: {
-        Jottings,
+        Jottings,Form,
     },
 
     setup() {
