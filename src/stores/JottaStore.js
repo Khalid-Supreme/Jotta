@@ -45,6 +45,15 @@ export const useJottaStore = defineStore('jottastore', {
     actions: {
         addNew(newJot) {
             this.jottings.push(newJot);
+        },
+        deleteJotting(id) {
+            this.jottings = this.jottings.filter((jotting) =>
+                jotting.id !== id)
+        },
+        toggleFave(id) {
+            const toggledJotting = this.jottings.find(jotting => jotting.id === id);
+            toggledJotting.isFave = !toggledJotting.isFave;
+
         }
     }
 });

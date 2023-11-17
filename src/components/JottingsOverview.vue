@@ -9,11 +9,11 @@
             <v-card-actions>
 
                 <v-spacer></v-spacer>
-                
-                <v-btn size="large" color="success" icon="mdi-delete">
+
+                <v-btn size="large" color="success" icon="mdi-delete" @click="deleteJotting(jotting.id)">
                 </v-btn>
-                <v-btn size="large" color="success" icon="mdi-heart-outline">
-            </v-btn>
+                <v-btn size="large" color="success" icon="mdi-heart-outline" @click="toggleFavoriteJotting(jotting.id)">
+                </v-btn>
             </v-card-actions>
             <v-divider></v-divider>
         </v-card>
@@ -22,7 +22,26 @@
 </template>
 
 <script>
+import { useJottaStore } from '../stores/jottaStore';
 export default {
-    props: ['jotting']
+    props: ['jotting'],
+    setup() {
+
+        const jottaStore = useJottaStore();
+
+        const deleteJotting = (id => {
+            jottaStore.deleteJotting(id);
+        });
+        const toggleFavoriteJotting = (id => {
+            jottaStore.toggleFave(id);
+        });
+
+        return { jottaStore, deleteJotting, toggleFavoriteJotting };
+
+
+
+
+    }
+
 }
 </script>

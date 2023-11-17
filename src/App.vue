@@ -17,7 +17,7 @@
 
         <!-- new jottings form -->
 
-        <Form/>
+        <Form />
 
         <!-- jottings -->
         <div class="jottings">
@@ -43,14 +43,14 @@
 
 
 <script>
-import Form from "./components/JottingsForm.vue";
 import { ref } from "vue";
+import Form from "./components/JottingsForm.vue";
 import Jottings from "./components/JottingsOverview.vue";
 import { useJottaStore } from "./stores/jottaStore";
 export default {
 
     components: {
-        Jottings,Form,
+        Jottings, Form,
     },
 
     setup() {
