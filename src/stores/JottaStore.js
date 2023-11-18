@@ -39,7 +39,13 @@ export const useJottaStore = defineStore('jottastore', {
             else {
                 return 1;
             }
-        }
+        },
+
+        checkIfFavorite: (state) => (id) => {
+            const jotting = state.jottings.find((j) => j.id === id);
+            return jotting ? jotting.isFave : null;
+          }
+          
     },
 
     actions: {

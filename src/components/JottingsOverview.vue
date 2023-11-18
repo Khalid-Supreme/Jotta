@@ -7,13 +7,21 @@
                 </v-card-title>
             </v-card-item>
             <v-card-actions>
-
                 <v-spacer></v-spacer>
-
-                <v-btn size="large" color="success" icon="mdi-delete" @click="deleteJotting(jotting.id)">
-                </v-btn>
-                <v-btn size="large" color="success" icon="mdi-heart-outline" @click="toggleFavoriteJotting(jotting.id)">
-                </v-btn>
+                <v-tooltip text="Delete" location="top" close-on-content-click>
+                    <template v-slot:activator="{ props }">
+                        <v-btn v-bind="props" size="small" icon="mdi-delete"
+                            @click="deleteJotting(jotting.id)">
+                        </v-btn>
+                    </template>
+                </v-tooltip>
+                <v-tooltip :text="tooltipText=== true ? 'Remove favorite' : 'Add favorite'" location="top" close-on-content-click>
+                    <template v-slot:activator="{ props }">
+                        <v-btn v-bind="props" size="small" color="red" :icon="heartIcon=== true ? 'mdi-heart' : 'mdi-heart-outline'"
+                            @click="toggleFavoriteJotting(jotting.id)">
+                        </v-btn>
+                    </template>
+                </v-tooltip>
             </v-card-actions>
             <v-divider></v-divider>
         </v-card>
@@ -22,22 +30,37 @@
 </template>
 
 <script>
+import { ref, onMounted } from "vue";
 import { useJottaStore } from '../stores/jottaStore';
 export default {
     props: ['jotting'],
-    setup() {
+    setup(props) {
 
         const jottaStore = useJottaStore();
+        const jottingId = props.jotting.id;
+        
+        const heartIcon = ref('');
+        const tooltipText = ref('');
 
         const deleteJotting = (id => {
             jottaStore.deleteJotting(id);
         });
         const toggleFavoriteJotting = (id => {
             jottaStore.toggleFave(id);
+            checkIfFavorite();
+
         });
+        onMounted(() => {
+            checkIfFavorite()
+        });
+        
+        const checkIfFavorite = () => {
+            let isFavorite = props.jotting.isFave;
+            heartIcon.value = isFavorite;
+            tooltipText.value = isFavorite;
+        }
 
-        return { jottaStore, deleteJotting, toggleFavoriteJotting };
-
+        return { jottaStore, deleteJotting, toggleFavoriteJotting, checkIfFavorite, jottingId, heartIcon, tooltipText };
 
 
 
