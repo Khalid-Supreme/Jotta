@@ -5,7 +5,7 @@
         <!-- heading -->
         <header class="jotta-header">
             <img src="./assets/pinia-logo.svg" alt="pinia-logo">
-            <h1>{{ jottaStore.name }}</h1>
+            <h1>{{ name }}</h1>
         </header>
         <!-- jottings filter buttons -->
 
@@ -20,23 +20,23 @@
         <Form />
 
         <!-- skeleton loader -->
-        <v-skeleton-loader type="list-item" v-if="jottaStore.loading" elevation="1"></v-skeleton-loader>
+        <v-skeleton-loader type="list-item" v-if="loading" elevation="1"></v-skeleton-loader>
 
         <!-- jottings -->
         <div class="jottings">
 
             <!-- all jottings -->
             <div v-if="filter == 'all'">
-                <p v-if="jottaStore.allCount">You have {{ jottaStore.allCount + jottaStore.pluralizeAllCount }} </p>
-                <div v-for="jotting in jottaStore.jottings" :key="jotting.id">
+                <p v-if="allCount">You have {{ allCount + pluralizeAllCount }} </p>
+                <div v-for="jotting in jottings" :key="jotting.id">
                     <Jottings :jotting="jotting" />
                 </div>
             </div>
 
             <!-- favorite jottings -->
             <div v-else="filter == 'favorite'">
-                <p v-if="jottaStore.faveCount">You have {{ jottaStore.faveCount + jottaStore.pluralizeFaveCount }} </p>
-                <div v-for="jotting in jottaStore.fave" :key="jotting.id">
+                <p v-if="faveCount">You have {{ faveCount + pluralizeFaveCount }} </p>
+                <div v-for="jotting in fave" :key="jotting.id">
                     <Jottings :jotting="jotting" />
                 </div>
             </div>
@@ -46,6 +46,7 @@
 
 
 <script>
+import { storeToRefs } from "pinia";
 import { ref } from "vue";
 import Form from "./components/JottingsForm.vue";
 import Jottings from "./components/JottingsOverview.vue";
@@ -64,7 +65,9 @@ export default {
         // fetch jottings
         jottaStore.getJottings();
 
-        return { jottaStore, filter };
+        const { jottings, name, loading, fave, faveCount, allCount, pluralizeAllCount, generateNewId, checkIfFavorite } = storeToRefs(jottaStore);
+
+        return { filter, jottings, name, loading, fave, faveCount, allCount, pluralizeAllCount, generateNewId, checkIfFavorite };
     }
 }
 
