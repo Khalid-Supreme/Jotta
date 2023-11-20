@@ -12,6 +12,7 @@
     "@mdi/font": "5.9.55",
     "pinia": "^2.1.7",
     "roboto-fontface": "*",
+    "server": "^1.0.38",
     "vue": "^3.3.4",
     "vuetify": "^3.4.0",
     "webfontloader": "^1.0.0"

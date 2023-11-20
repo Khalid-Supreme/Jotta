@@ -1,13 +1,10 @@
 import { defineStore } from "pinia";
 export const useJottaStore = defineStore('jottastore', {
     state: () => ({
-        // add some obj properties here
-        jottings: [
-            { id: 1, title: 'Evolution of AI', isFave: false },
-            { id: 2, title: 'How to make jollof rice', isFave: true }
-        ],
 
-        name: 'Jotta'
+        jottings: [],
+        name: 'Jotta',
+        
     }),
 
     getters: {
@@ -44,11 +41,21 @@ export const useJottaStore = defineStore('jottastore', {
         checkIfFavorite: (state) => (id) => {
             const jotting = state.jottings.find((j) => j.id === id);
             return jotting ? jotting.isFave : null;
-          }
-          
+        }
+
     },
 
     actions: {
+
+        async getJottings() {
+
+            /**type 'json-server --watch ./data/db.json' in a separate terminal to start json server */
+            const response = await fetch(' http://localhost:3000/jottings');
+            const data = await response.json();
+
+            this.jottings = data;
+        },
+
         addNew(newJot) {
             this.jottings.push(newJot);
         },

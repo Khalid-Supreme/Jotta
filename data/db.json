@@ -1,0 +1,15 @@
+{
+    "jottings": [
+        { "id": 1, "title": "AI in the Fast Lane: Tokyo Drift", "isFave": false },
+        { "id": 2, "title": "Cooking Up a Storm: The Rocky Balboa Recipe", "isFave": true },
+        { "id": 3, "title": "Renewable Energy Rumble: Avengers Assemble", "isFave": false },
+        { "id": 4, "title": "Dark Matter Slam Dunk: Space Jam Chronicles", "isFave": true },
+        { "id": 5, "title": "Mindful Moments: The Interstellar Expedition", "isFave": false },
+        { "id": 6, "title": "Space Jam Slam: The Giannis Antetokounmpo Crossover", "isFave": true },
+        { "id": 7, "title": "Sustainable Living with Cristiano Ronaldo: The Green Game", "isFave": false },
+        { "id": 8, "title": "Cinematic Stories: The LeBron James Influence", "isFave": true },
+        { "id": 9, "title": "Med Tech Grand Slam: The Serena Williams Touch", "isFave": false },
+        { "id": 10, "title": "Climate Change Goals: The Messi Cup", "isFave": true }
+    ]
+    
+}

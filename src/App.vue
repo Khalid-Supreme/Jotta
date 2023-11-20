@@ -18,7 +18,6 @@
         <!-- new jottings form -->
 
         <Form />
-
         <!-- jottings -->
         <div class="jottings">
 
@@ -57,6 +56,9 @@ export default {
         const jottaStore = useJottaStore();
 
         const filter = ref('all');
+
+        // fetch jottings
+        jottaStore.getJottings();
 
         return { jottaStore, filter };
     }
