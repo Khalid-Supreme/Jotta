@@ -58,16 +58,37 @@ export const useJottaStore = defineStore('jottastore', {
             this.loading = false;
         },
 
-        addNew(newJot) {
+        async addNew(newJot) {
             this.jottings.push(newJot);
+
+            const response = await fetch(' http://localhost:3000/jottings', {
+                method: 'POST',
+                body: JSON.stringify(newJot),
+                headers: { 'Content-Type': 'application/json' },
+            });
+
+            !response.ok && console.log('Error: ', response.status, response.statusText);
         },
-        deleteJotting(id) {
-            this.jottings = this.jottings.filter((jotting) =>
-                jotting.id !== id)
+        async deleteJotting(id) {
+            this.jottings = this.jottings.filter((jotting) => jotting.id !== id)
+
+            const response = await fetch(' http://localhost:3000/jottings/' + id, {
+                method: 'DELETE',
+            });
+            !response.ok && console.log('Error: ', response.status, response.statusText);
+
         },
-        toggleFave(id) {
+        async toggleFave(id) {
             const toggledJotting = this.jottings.find(jotting => jotting.id === id);
             toggledJotting.isFave = !toggledJotting.isFave;
+
+            const response = await fetch(' http://localhost:3000/jottings/' + id, {
+                method: 'PATCH',
+                body: JSON.stringify({ isFave: toggledJotting.isFave }),
+                headers: { 'Content-Type': 'application/json' },
+            });
+            !response.ok && console.log('Error: ', response.status, response.statusText);
+
 
         }
     }
