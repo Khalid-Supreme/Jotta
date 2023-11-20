@@ -4,7 +4,7 @@ export const useJottaStore = defineStore('jottastore', {
 
         jottings: [],
         name: 'Jotta',
-        
+        loading: false,
     }),
 
     getters: {
@@ -48,12 +48,14 @@ export const useJottaStore = defineStore('jottastore', {
     actions: {
 
         async getJottings() {
+            this.loading = true;
 
             /**type 'json-server --watch ./data/db.json' in a separate terminal to start json server */
             const response = await fetch(' http://localhost:3000/jottings');
             const data = await response.json();
 
             this.jottings = data;
+            this.loading = false;
         },
 
         addNew(newJot) {

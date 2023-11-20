@@ -18,6 +18,10 @@
         <!-- new jottings form -->
 
         <Form />
+
+        <!-- skeleton loader -->
+        <v-skeleton-loader type="list-item" v-if="jottaStore.loading" elevation="1"></v-skeleton-loader>
+
         <!-- jottings -->
         <div class="jottings">
 
