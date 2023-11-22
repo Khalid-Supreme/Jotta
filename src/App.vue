@@ -65,9 +65,9 @@ export default {
         // fetch jottings
         jottaStore.getJottings();
 
-        const { jottings, name, loading, fave, faveCount, allCount, pluralizeAllCount, generateNewId, checkIfFavorite } = storeToRefs(jottaStore);
+        const { jottings, name, loading, fave, faveCount, allCount, pluralizeAllCount, pluralizeFaveCount, generateNewId, checkIfFavorite } = storeToRefs(jottaStore);
 
-        return { filter, jottings, name, loading, fave, faveCount, allCount, pluralizeAllCount, generateNewId, checkIfFavorite };
+        return { filter, jottings, name, loading, fave, faveCount, allCount, pluralizeAllCount, pluralizeFaveCount, generateNewId, checkIfFavorite };
     }
 }
 
