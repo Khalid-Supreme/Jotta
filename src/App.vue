@@ -1,12 +1,19 @@
 
 <template>
-    <v-sheet elevation="12" max-width="1000" rounded="lg" width="100%" class="pa-4 mx-auto">
-
+    <v-sheet color="#e7e7e7" width="100%" class="pa-4 mx-auto">
         <!-- heading -->
-        <header class="jotta-header">
+        <header class="jotta-header mb-5">
             <img src="./assets/pinia-logo.svg" alt="pinia-logo">
             <h1>{{ name }}</h1>
         </header>
+        
+        <!-- new jottings form -->
+    
+        <Form />
+    </v-sheet>
+
+    <v-sheet max-width="60%" color="#f2f2f2" width="100%" class="pa-4 mx-auto">
+
         <!-- jottings filter buttons -->
 
         <v-card-actions>
@@ -15,9 +22,6 @@
             <v-btn variant="tonal" @click="filter = 'favorite'" append-icon="mdi-heart">Favorite</v-btn>
         </v-card-actions>
 
-        <!-- new jottings form -->
-
-        <Form />
 
         <!-- skeleton loader -->
         <v-skeleton-loader type="list-item" v-if="loading" elevation="1"></v-skeleton-loader>

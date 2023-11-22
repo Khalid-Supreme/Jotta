@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-responsive class="mx-auto" max-width="500">
-            <v-text-field variant="outlined" density="compact" placeholder="Jottings on..." v-model="newJotting">
+            <v-text-field variant="solo" flat bg-color="#fff" density="compact" placeholder="Jottings on..." v-model="newJotting">
                 <template #append-inner>
                     <v-tooltip location="bottom">
                         <template #activator="{ props }">

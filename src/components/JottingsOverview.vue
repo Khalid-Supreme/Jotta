@@ -23,7 +23,6 @@
                     </template>
                 </v-tooltip>
             </v-card-actions>
-            <v-divider></v-divider>
         </v-card>
 
     </div>
