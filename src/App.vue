@@ -6,9 +6,9 @@
             <img src="./assets/pinia-logo.svg" alt="pinia-logo">
             <h1>{{ name }}</h1>
         </header>
-        
+
         <!-- new jottings form -->
-    
+
         <Form />
     </v-sheet>
 
@@ -16,10 +16,19 @@
 
         <!-- jottings filter buttons -->
 
-        <v-card-actions>
+        <v-card-actions class="px-0">
             <v-spacer></v-spacer>
-            <v-btn variant="tonal" @click="filter = 'all'" append-icon="mdi-format-list-bulleted-square">All</v-btn>
-            <v-btn variant="tonal" @click="filter = 'favorite'" append-icon="mdi-heart">Favorite</v-btn>
+            <v-tooltip text="All" location="bottom">
+                <template v-slot:activator="{ props }">
+                    <v-btn variant="outline" v-bind="props" @click="filter = 'all'"
+                        icon="mdi-format-list-bulleted-square"></v-btn>
+                </template>
+            </v-tooltip>
+            <v-tooltip text="Favorites" location="bottom">
+                <template v-slot:activator="{ props }">
+            <v-btn variant="outline" v-bind="props" @click="filter = 'favorite'" icon="mdi-heart"></v-btn>
+                </template>
+            </v-tooltip>
         </v-card-actions>
 
 

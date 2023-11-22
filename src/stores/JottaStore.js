@@ -21,10 +21,10 @@ export const useJottaStore = defineStore('jottastore', {
         allCount: (state) => state.jottings.length,
 
         pluralizeFaveCount() {
-            return this.faveCount > 1 ? " favorite jottings." : " favorite jotting.";
+            return this.faveCount > 1 ? " favorite jottings" : " favorite jotting";
         },
         pluralizeAllCount() {
-            return this.allCount > 1 ? " total jottings." : " total jotting.";
+            return this.allCount > 1 ? " jottings" : " jotting";
         },
 
         generateNewId() {
